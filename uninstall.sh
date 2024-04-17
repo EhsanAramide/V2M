@@ -1,4 +1,4 @@
 #!/bin/bash
 
 sudo rm /usr/bin/v2m
-rm -rf $V2M_REPO
+rm -rf $V2M_HOME
