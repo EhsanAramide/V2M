@@ -18,13 +18,15 @@ else
     v2m_home=$V2M_HOME
     LOG_INF "V2M_HOME=$v2m_home"
 fi
+mkdir -p $v2m_home/v2m
+cp -r ./v2m/* $v2m_home/v2m
 
 
 if [[ -z $V2M_REPO ]]; then
     printf "V2M_REPO: (default=$HOME/.v2m, please enter absolute path) => "
     read -r v2m_repo
     if [[ -z $v2m_repo ]]; then
-        v2m_repo=$HOME/.v2m
+        v2m_repo=$HOME/.v2m/repo
     fi
     LOG_INF "V2M_REPO=$v2m_repo"
     LOG_WARN "Please add V2M_REPO to environment variables!"
@@ -34,6 +36,7 @@ else
     v2m_repo=$V2M_REPO
     LOG_INF "V2M_REPO=$v2m_repo"
 fi
+mkdir -p $v2m_repo
 
 exe_flag=(1 1)
 v2ray_exe=`which v2ray`
@@ -64,4 +67,4 @@ fi
 
 printf "V2M_HOME=%s\nV2M_REPO=%s\n" $v2m_home $v2m_repo >$v2m_home/v2m_info
 
-ln -s "$v2m_home/v2m/main.sh" "/usr/bin/v2m"
+sudo ln -s "$v2m_home/v2m/main.sh" "/usr/bin/v2m"
