@@ -1,10 +1,14 @@
 #!/bin/bash
 
-REPO_FILES="find $V2M_REPO"
+# FIX: async `preview` command
+REPO_FILES="find $V2M_REPO -type f"
 eval $REPO_FILES | fzf \
 --border=rounded \
 --margin=2.5% \
 --multi \
+--preview="$V2M_HOME/v2m/config_detail.py {}" \
+--preview-label="[ Server Detail ]" \
+--preview-window="40%,border-rounded,wrap" \
 \
 --bind="del:execute(rm -ri {+})" \
 --bind="ctrl-h:execute(rm -ri {+})" \
@@ -26,4 +30,6 @@ eval $REPO_FILES | fzf \
 --bind="right:+deselect-all" \
 --bind="ctrl-l:+deselect-all" \
 \
---bind="enter:+abort"
+--bind="enter:+abort" \
+\
+--bind="ctrl-p:refresh-preview"
