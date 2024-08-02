@@ -24,12 +24,14 @@ with open(sys.argv[1], 'r') as config:
                     f"{space}{idx}: http://{inbounds[idx]['listen']}:{inbounds[idx]['port']}")
             case _:
                 pass
+    
     # TODO: proxy must be added
-    cURL_latency_measurement = ["curl",
-                                "-w", "%{time_total}",
-                                "-s", "google.com",
-                                "-o", "/dev/null"]
-    latency = subprocess.run(cURL_latency_measurement,
-                             capture_output=True, check=True).stdout
-    latency = int(float(latency) * 1000)
-    print(f"Latency: {latency}ms")
+    # cURL_latency_measurement = ["curl",
+    #                             "--socks5", "127.0.0.1:10808",
+    #                             "-w", "%{time_total}",
+    #                             "-s", "youtube.com",
+    #                             "-o", "/dev/null"]
+    # latency = subprocess.run(cURL_latency_measurement,
+    #                          capture_output=True, check=True).stdout
+    # latency = int(float(latency) * 1000)
+    # print(f"Latency: {latency}ms")
