@@ -12,14 +12,14 @@ if [[ -z $V2M_HOME ]]; then
     fi
     LOG_INF "V2M_HOME=$v2m_home"
     LOG_WARN "Please add V2M_HOME to environment variables!"
-    mkdir -p $v2m_home
+    mkdir -p "$v2m_home"
 else
     LOG_INF "V2M_HOME variable has been set!"
     v2m_home=$V2M_HOME
     LOG_INF "V2M_HOME=$v2m_home"
 fi
-mkdir -p $v2m_home/v2m
-cp -r ./v2m/* $v2m_home/v2m
+mkdir -p "$v2m_home/v2m"
+cp -r ./v2m/* "$v2m_home/v2m"
 
 
 if [[ -z $V2M_REPO ]]; then
@@ -30,13 +30,13 @@ if [[ -z $V2M_REPO ]]; then
     fi
     LOG_INF "V2M_REPO=$v2m_repo"
     LOG_WARN "Please add V2M_REPO to environment variables!"
-    mkdir -p $v2m_repo
+    mkdir -p "$v2m_repo"
 else
     LOG_INF "V2M_REPO variable has been set!"
     v2m_repo=$V2M_REPO
     LOG_INF "V2M_REPO=$v2m_repo"
 fi
-mkdir -p $v2m_repo
+mkdir -p "$v2m_repo"
 
 exe_flag=(1 1)
 v2ray_exe=`which v2ray`
@@ -65,6 +65,6 @@ if [[ $err_code -eq 0 ]]; then
 fi
 
 
-printf "V2M_HOME=%s\nV2M_REPO=%s\n" $v2m_home $v2m_repo >$v2m_home/v2m_info
+printf "V2M_HOME=%s\nV2M_REPO=%s\n" "$v2m_home" "$v2m_repo" >"$v2m_home/v2m_info"
 
 sudo ln -s "$v2m_home/v2m/main.sh" "/usr/bin/v2m"
